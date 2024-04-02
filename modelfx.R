@@ -51,7 +51,7 @@ movement_timestep = function(HPop, mobmat){
   colusers=which(colnames(daily_move_mat) == "fr_users")
   movement_matrix[daily_move_mat[,c(col1,col2)]] = daily_move_mat[,colmove]/daily_move_mat[,colusers]
 
-    movement_matrix = movement_matrix*.05
+    movement_matrix = movement_matrix*.1
 
   for (i in 1:length(HPop$ID)){
     movement_matrix[i,i] = 1 - sum(movement_matrix[i,-i])
