@@ -17,7 +17,7 @@ pat_locator$transmission = 2/6
 pat_locator$recovery = 1/6
 HPop = InitiatePop(pat_locator$ID,pat_locator$inf,pat_locator$pop,pat_locator$transmission, pat_locator$recovery)
 
-input_dates = 1:100
+input_dates = 1:200
 HPop_update = runSim(HPop,movement_data, input_dates)
 
 output_data = pivot_longer(HPop_update$all_spread, cols = -c(day))
@@ -33,8 +33,8 @@ ggplot() + geom_line(output_data_all,mapping = aes(x=day,y=inf),size = 1) +
   scale_y_continuous(name = "# Infectious")+theme_bw(base_size = 20)+theme(legend.position = "top")
 
 
-day_50_data = subset(output_data,day == 50)
-shapefile_with_inf = merge(shapefile,day_50_data,by.x="STCOFIPS",by.y="name")
+day_200_data = subset(output_data,day == 200)
+shapefile_with_inf = merge(shapefile,day_200_data,by.x="STCOFIPS",by.y="name")
 
 library(ggplot2)
 ggplot() + geom_sf(shapefile, mapping = aes(),fill = "light grey") + 
