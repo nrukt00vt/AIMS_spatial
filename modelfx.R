@@ -13,7 +13,13 @@ InitiatePop = function(IDs, initialInf_vec,totalPop_vec,beta_vec,gamma_vec){
 }
 ##### Epidemic functions: exposure, infectivity, recovery  ####
 recovery_timestep = function(HPop){
-
+  
+  for (i in 1:length(HPop$R)){
+    losing_immunity_today_i = HPop$R[i] * .2
+    HPop$R[i] = HPop$R[i] - losing_immunity_today_i
+    HPop$S[i] = HPop$S[i] + losing_immunity_today_i
+  }
+  
   for (i in 1:length(HPop$I)){
     recovered_today_i= HPop$I[i] * HPop$gamma[i]
     HPop$I[i] = HPop$I[i] - recovered_today_i
