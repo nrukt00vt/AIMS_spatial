@@ -40,3 +40,12 @@ library(ggplot2)
 ggplot() + geom_sf(shapefile, mapping = aes(),fill = "light grey") + 
   geom_sf(subset(shapefile_with_inf,value > 0), mapping = aes(fill = value)) + 
   scale_fill_distiller(palette = "YlOrRd" , direction = 1)
+
+
+day_50_data = subset(output_data,day == 50)
+shapefile_with_inf = merge(shapefile,day_50_data,by.x="STCOFIPS",by.y="name")
+
+library(ggplot2)
+ggplot() + geom_sf(shapefile, mapping = aes(),fill = "light grey") + 
+  geom_sf(subset(shapefile_with_inf,value > 0), mapping = aes(fill = value)) + 
+  scale_fill_distiller(palette = "YlOrRd" , direction = 1)
